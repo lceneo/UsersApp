@@ -1,0 +1,14 @@
+
+  <div class="card-wrapper" *ngFor="let user of usersService.userArray; let i = index;" (click)="getDetailedInfo(i)">
+      <div class="card-info">
+        <p>Nickname: {{user.username}}</p>
+        <p>Name: {{[user.first_name, user.last_name].join(" ")}}</p>
+        <p>Gender: {{user.gender}}</p>
+        <p>Phone-number: {{user.phone_number}}</p>
+        <p>E-mail: {{user.email}}</p>
+      </div>
+      <div class="card-logo">
+        <img [src]="user.avatar" [alt]="user.username">
+      </div>
+  </div>
+

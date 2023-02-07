@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
+import { UsersService } from './services/users.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'my-app';
+  constructor(public userService: UsersService) {
+    window.addEventListener("scroll", () => {
+      if(document.body.scrollHeight - window.scrollY <= window.innerHeight && !this.userService.isAdding)
+        this.userService.getNewUsers();
+    });
+  }
+  title = 'Embedika';
 }
