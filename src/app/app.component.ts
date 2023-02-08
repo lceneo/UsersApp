@@ -1,5 +1,5 @@
-import {Component, HostListener} from '@angular/core';
-import { UsersService } from './services/users.service';
+import {Component} from '@angular/core';
+import { PokemonService } from './services/pokemon.service';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +7,10 @@ import { UsersService } from './services/users.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(public userService: UsersService) {
+  constructor(public pokemonService: PokemonService) {
     window.addEventListener("scroll", () => {
-      if(document.body.scrollHeight - window.scrollY <= window.innerHeight && !this.userService.isAdding)
-        this.userService.getNewUsers();
+      if(document.body.scrollHeight - window.scrollY <= window.innerHeight && !this.pokemonService.isAdding)
+        this.pokemonService.getNewUsers();
     });
   }
   title = 'Embedika';

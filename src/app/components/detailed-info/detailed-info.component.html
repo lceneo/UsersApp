@@ -1,1 +1,16 @@
-
+<div class="wrapper">
+    <nav class="navigation" (click)="returnToMainPage()">
+      <p>Вернуться</p>
+      <img src="/assets/img/back.svg" alt="Return">
+    </nav>
+  <h1 class="title">{{pokemon.name}}</h1>
+  <div class="pokemon__wrapper">
+  <img [src]="pokemon.image + '/high.webp'" [alt]="pokemon.name" width="500" height="725">
+    <div class="pokemon__info">
+      <p>Id: <span>{{pokemon.id}}</span></p>
+      <p>Type: <span>Pokemon</span></p>
+      <p>Local Id: <span>{{pokemon.localId}}</span></p>
+      <p>Category: <span>Card</span></p>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {IUser} from "../models/IUser";
+import {IPokemon} from "../models/IPokemon";
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +8,17 @@ export class SharedInfoService {
 
   constructor() {
   }
-  private user: IUser;
+  private pokemon: IPokemon;
+  private previousPage: number;
 
-  setUser(user: IUser){
-    this.user = user;
+  setPokemon(pokemon: IPokemon, page: number){
+    this.pokemon = pokemon;
+    this.previousPage = page;
   }
-  getUser(): IUser{
-    return this.user;
+  getPokemon(): IPokemon{
+    return this.pokemon;
+  }
+  getPreviousPage(): number{
+    return this.previousPage;
   }
 }

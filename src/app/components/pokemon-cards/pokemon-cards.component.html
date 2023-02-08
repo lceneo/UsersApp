@@ -1,0 +1,21 @@
+
+<h1 class="title">Pokemon Cards</h1>
+  <div class="card-wrapper" *ngFor="let pokemon of pokemonService.pokemonArray | paginate: { itemsPerPage:5, currentPage: p};
+  let i = index;" (click)="getDetailedInfo(i + (p - 1) * 5)">
+      <div class="card-top">
+        <h2 class="card__name">Name: {{pokemon.name}}</h2>
+        <img src= "/assets/img/forward.svg" alt="Forward">
+      </div>
+    <div class="info-wrapper">
+      <div class="card__description">
+        <p>Id: <span>{{pokemon.id}}</span></p>
+        <p>Type: <span>Pokemon</span></p>
+        <p>Category: <span>Card</span></p>
+      </div>
+        <img class="card-logo" [src]="pokemon.image + '/low.webp'" [alt]="pokemon.name" width="243" height="334">
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event" class="float-right">
+
+  </pagination-controls>
+

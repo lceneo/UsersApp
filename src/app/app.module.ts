@@ -3,16 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {UserCardsComponent} from "./components/user-cards/user-cards.component";
+import {PokemonCardsComponent} from "./components/pokemon-cards/pokemon-cards.component";
 import {DetailedInfoComponent} from "./components/detailed-info/detailed-info.component";
+import {NgxPaginationModule} from "ngx-pagination"
 
 @NgModule({
     declarations: [
         AppComponent,
-        UserCardsComponent,
+        PokemonCardsComponent,
         DetailedInfoComponent
     ],
   imports: [
+    NgxPaginationModule,
     BrowserModule,
     AppRoutingModule,
   ],
