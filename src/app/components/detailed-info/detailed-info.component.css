@@ -1,4 +1,4 @@
-.wrapper{
+.card__list{
   padding-left: 67px;
   padding-top: 20px;
   margin: 0px;
@@ -47,3 +47,4 @@
 .pokemon__wrapper{
   display: flex;
 }
+

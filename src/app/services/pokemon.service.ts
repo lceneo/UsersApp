@@ -9,7 +9,7 @@ import { IPokemon } from '../models/IPokemon';
 })
 export class PokemonService {
 
-  public  pokemonArray: IPokemon[] = [];
+  public pokemonArray: IPokemon[] = [];
   public isAdding: boolean = false;
 
   async getNewUsers(): Promise<void>{

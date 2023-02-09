@@ -1,21 +1,67 @@
 
 <h1 class="title">Pokemon Cards</h1>
-  <div class="card-wrapper" *ngFor="let pokemon of pokemonService.pokemonArray | paginate: { itemsPerPage:5, currentPage: p};
-  let i = index;" (click)="getDetailedInfo(i + (p - 1) * 5)">
-      <div class="card-top">
-        <h2 class="card__name">Name: {{pokemon.name}}</h2>
-        <img src= "/assets/img/forward.svg" alt="Forward">
+<div class="wrapper">
+  <ul class="card__list">
+    <li class="card-item" *ngFor="let pokemon of pokemonService.pokemonArray |
+     filter: nameFilter: imgFilter : fCheckBoxActive : sCheckBoxActive : tCheckBoxActive |
+     paginate: { itemsPerPage:5, currentPage: p};
+    let i = index;">
+        <div class="card-top">
+          <h2 class="card__name">Name: {{pokemon.name}}</h2>
+          <img src= "/assets/img/forward.svg" alt="Forward" (click)="getDetailedInfo(pokemon)">
+        </div>
+      <div class="info-wrapper">
+        <div class="card__description">
+          <p>Id: <span>{{pokemon.id}}</span></p>
+          <p>Type: <span>Pokemon</span></p>
+          <p>Category: <span>Card</span></p>
+        </div>
+          <img class="card-logo" [src]="pokemon.image + '/low.webp'" [alt]="pokemon.name" width="243" height="334">
       </div>
-    <div class="info-wrapper">
-      <div class="card__description">
-        <p>Id: <span>{{pokemon.id}}</span></p>
-        <p>Type: <span>Pokemon</span></p>
-        <p>Category: <span>Card</span></p>
+    </li>
+  </ul>
+  <div class="filters">
+    <h2>Filters</h2>
+    <input type="text" placeholder="Name" [(ngModel)]="nameFilter" [ngClass]="{
+      'typedIn': nameFilter.length > 0,
+      'notTypedIn': nameFilter.length === 0
+    }">
+    <div class="checkbox--naming">
+      <p>Pokemon name length</p>
+      <img class="checkbox--ico" src="assets/img/checkbox-list.svg" width="20" height="20" (click)="nameLengthFilterIsShown = !nameLengthFilterIsShown">
+    </div>
+    <div class="filters__select--wrapper" [ngClass]="{
+    'filters__select--wrapper': nameLengthFilterIsShown,
+    'filters__select--wrapper__empty' : !nameLengthFilterIsShown
+    }">
+      <div>
+        <input type="checkbox" id = "1-5 symbols" value="firstCheckBox" (change)="changeCheckBox('firstCheckBox')">
+        <label for="1-5 symbols">1-5 symbols</label>
       </div>
-        <img class="card-logo" [src]="pokemon.image + '/low.webp'" [alt]="pokemon.name" width="243" height="334">
+      <div>
+        <input type="checkbox" id = "6-10 symbols" value="secondCheckBox" (change)="changeCheckBox('secondCheckBox')">
+        <label for="6-10 symbols">6-10 symbols</label>
+      </div>
+      <div>
+        <input type="checkbox" id = ">10 symbols" value="thirdCheckBox" (change)="changeCheckBox('thirdCheckBox')">
+        <label for=">10 symbols">&gt;10 symbols</label>
+      </div>
+    </div>
+    <p class="filters__img">Image</p>
+    <div class="filters__radio--wrapper">
+      <input type="radio" id="All" name="All" value="All" [(ngModel)]="imgFilter">
+      <label for="All">All cards</label>
+    </div>
+    <div>
+      <input type="radio" id="WithImage" name="WithImage" value="WithImage" [(ngModel)]="imgFilter">
+      <label for="WithImage">With image</label>
+    </div>
+    <div>
+      <input type="radio" id="WithoutImage" name="WithoutImage" value="WithoutImage" [(ngModel)]="imgFilter">
+      <label for="WithoutImage">Without image</label>
     </div>
   </div>
-  <pagination-controls (pageChange)="p = $event" class="float-right">
-
-  </pagination-controls>
+</div>
+<pagination-controls (pageChange)="p = $event" class="float-right" [previousLabel]="previous" [nextLabel]="next">
+</pagination-controls>
 
